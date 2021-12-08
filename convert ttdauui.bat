@@ -1,0 +1,1 @@
+pyuic5 ttdau.ui -o ttdau.py
