@@ -7,30 +7,22 @@ import requests
 import pandas as pd
 import concurrent.futures
 
-# Api_duphong = {
-#   "type": "service_account",
-#   "project_id": "sheetgmsh",
-#   "private_key_id": "8d8356f89c2a425a4326cc86965fa037d3fa873d",
-#   "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDSeK3VlASmou6f\ncy63m9JJVblbY9qH6Frt4wrZosZQFPUbSNLoJM6Nzv5ABIsbNy3xg4V+I2yznVVG\nDFQ0g9FLvk8JEHetuLuWQCjLPZ9wuZeqM0pN5PEvV1plvVQKeVSpTsE+Pg2hxlIJ\nj6440RkqdPOwbLVgJdKMej6lxLUAS/kapkVyPFUa5ctSSxEVgt6ryMkGlXoXGj4l\nX0hJLfkEhccQ//WuYH7agQUtUQl4RdmLVgoMwQa46AOg0UhEJudX+00c2T3yq0kd\nSVAd5YjerKN/mr3ckZr3cfZP/X2gVvZMpMsO+xTsp9mDW9vpmRu+fMxGPg+p3Q1m\nD5XdYbvpAgMBAAECggEADd6ff/tW2h9TD8Vgnv9g+m2wfw4DvOCKO3JyiNiB7o2P\nAGsKYPtp9CzfktrpytOWTrvOzHrroyN7VtghpWtJW88w+KUx6cwKapKUTZ5kNyK3\n1KK4Iw1y+l5siddR5jXMJzMWJ3Kh5dcCmXgzMDHRUXuvAmGLi0g6yYCVx8lAb0Iz\n0n+aiFD+H7q9rBBDUm6X7TjZbj2ojEi/rATaaIUdhqcLa4ruPN+n5MwLQ/DzMalX\nIbXFvf7AAzQGAxyYrCUbahaWmc9i0Z4qa6J9aBIvttgov1GODda6Fa+iVk/lH4lB\nOps4u+PxMUNFQpTj0ThYSZLfJXHpLW3qVKzV9rPTnQKBgQDpWp5976ag/ASJSSsB\nks6NxLm7akFe5W/e3C+EcixQNumuwE5H0DAFGmR6NrzxtZjZ2dsqPKflv69va6E6\n1vAvAbswkQ+I27OD95Vau2CNPiCjsTg/SS75EvTfPNZ8ktJqy+8Cv6loKSlDi/zD\ngitdsai4eJGmhupD+lKdv7KI5QKBgQDm5ZJSQFO7hFq00jlsQHQCbnlmm90mpw9H\nMGC/Fygvs005MZFmv3IutZQsejvDUIl5kAYtOhHtH87NXzGEe9pwIG1jMdoAMVT6\n4NvVlFX1tmXR3khU2feCd2RqOl1hFaztFHlrPT5+eLCZUv000g6tab/lQK5f1u+K\ncvmOaLYKtQKBgQC/9iPbRYG1fJves6oFKVdxmBuR6N7NycA1fLw6IBIECqhBcUD0\nInbeO8/cGZtk2xZaX7TDEhKsFPuklM2VMatzf+EVGr/Evbb3IHxkny/WAP2oquiy\nZumVS9rUqZ9n6v/ditWbVT9uyC2Bu267BiHWeYdp+QUYEHQ2Z33+9utPYQKBgQCZ\nj2DK9yE4+wNgctfh2NPOsi5nQY3JIR4WGGSfcgU2BCd9vCuZjAWibvzGv9xzP2LO\nyCxzc8VsUNU23PKPy9cw70AQ0pzLuANufpF18BtjORVqiEzOsc/cow7TX1GvOb0y\nR4Wg/rBLaHT646imsnU0e7o1+9h8wPO6vlCel6FKaQKBgGdqTWCVOYvqP9TeQsRD\nGc2CAN/csQnaxIodfpcLuRHJa+zXx+7yF2r66TWSHl2DeM9OWus4cxXSejdNNcDR\nV8d2mJImqY2knS4pnQal1KDgIJizUX8PJn/9EeHOyVU3efA4Pz+i62LfGJuHGAHf\nc0/qLIFCa+6wkDyeb67oiEGa\n-----END PRIVATE KEY-----\n",
-#   "client_email": "ok-806@sheetgmsh.iam.gserviceaccount.com",
-#   "client_id": "110292552660176015588",
-#   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-#   "token_uri": "https://oauth2.googleapis.com/token",
-#   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-#   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ok-806%40sheetgmsh.iam.gserviceaccount.com"
-# }
-
-
 
 # SCOPES = ['https://www.googleapis.com/auth/spreadsheets', "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 reponse = requests.get('https://raw.githubusercontent.com/imat94/GMSH/main/okok.json').json()
 client = gspread.service_account_from_dict(reponse)
-
-gc = client.open_by_url(
+mainclient = client.open_by_url(
 	'https://docs.google.com/spreadsheets/d/1wx67vV8qPVgfxPkchs_3QnKmCbH16d_roeIQ4O-Qz2c/'
-	).worksheet('Test')
+	)
 
-
+sh = ['THÁNG 12','2020-2019','2021']
+with concurrent.futures.ThreadPoolExecutor() as job:
+	for sh_name in sh:
+		future = job.submit(lambda:mainclient.worksheet(sh_name))
+		return_value = future.result()
+		if sh_name =='THÁNG 12':gctt = return_value
+		elif sh_name =='2020-2019':gc1920= return_value
+		else:gc21= return_value
 
 
 
@@ -50,10 +42,6 @@ for i in range(len(all_list)):
 	all_list[i] = open('data/'+all_data[i],encoding='utf-8').readlines()
 
 
-
-
-
-
 class Main(QtWidgets.QMainWindow,Ui_MainWindow):
 	def  __init__(self):
 		super().__init__()
@@ -66,12 +54,12 @@ class Main(QtWidgets.QMainWindow,Ui_MainWindow):
 
 		self.auto_reload()
 
-		self.list_username = gc.col_values(2)
+		self.list_username = gctt.col_values(2)
 		
 
 	def new_cell(self,value):
 		global last_row 
-		self.list_username = gc.col_values(2)
+		self.list_username = gctt.col_values(2)
 		self.last_row = len(self.list_username)
 
 		name = self.lineEdit.text()
@@ -86,27 +74,47 @@ class Main(QtWidgets.QMainWindow,Ui_MainWindow):
 		daily = self.comboBox.currentText()
 		note = self.lineEdit_22.text()
 
-		gc.update_acell(f"B{self.last_row+1}", value=name)
-		gc.update_acell(f"C{self.last_row+1}", value=daily)
-		gc.update_acell(f"D{self.last_row+1}", value=note)
+		gctt.update_acell(f"B{self.last_row+1}", value=name)
+		gctt.update_acell(f"C{self.last_row+1}", value=daily)
+		gctt.update_acell(f"D{self.last_row+1}", value=note)
 		self.label_25.setText('Thêm thành công')
+	# def update_cell(self):
+	# 	self.list_username = gc.col_values(2)
+	# 	self.last_row = len(self.list_username)
+	# 	name = self.lineEdit.text()
+	# 	row = self.list_username.index(name)
+	# 	daily = self.lineEdit_20.text()
+	# 	note  = self.comboBox_2.currentText()
+	# 	if name in self.list_username:
+	# 		if daily !='':
+	# 			row = self.list_username.index(name)+1
+	# 			gc.update_acell(f"C{row}", value=daily)
+	# 		gc.update_acell(f"D{row}", value=note)
 
-
-	def update_cell(self):
-		self.list_username = gc.col_values(2)
+	def update_cell1920(self):
+		self.list_username = gc1920.col_values(1)
 		self.last_row = len(self.list_username)
 		name = self.lineEdit.text()
-		row = self.list_username.index(name)
-		daily = self.lineEdit_20.text()
-		note  = self.comboBox_2.currentText()
+		row = self.list_username.index(name)+1
+		ghichu = self.lineEdit_20.text()
+		trangthai  = self.comboBox_2.currentText()
 		if name in self.list_username:
-			if daily !='':
-				row = self.list_username.index(name)+1
-				gc.update_acell(f"C{row}", value=daily)
-			gc.update_acell(f"D{row}", value=note)
+			if ghichu !='':
+				gc1920.update_acell(f"C{row}", value=ghichu)
+			gc1920.update_acell(f"E{row}", value=trangthai)
 
-
-
+	def update_cell21(self):
+		self.list_username = gc21.col_values(1)
+		self.last_row = len(self.list_username)
+		name = self.lineEdit.text()
+		row = self.list_username.index(name)+1
+		ghichu = self.lineEdit_21.text()
+		trangthai  = self.comboBox_3.currentText()
+		if name in self.list_username:
+			if ghichu !='':
+				gc21.update_acell(f"C{row}", value=ghichu)
+			gc21.update_acell(f"E{row}", value=trangthai)
+		print(row)
 
 
 
@@ -215,7 +223,9 @@ class Main(QtWidgets.QMainWindow,Ui_MainWindow):
 
 
 		self.pushButton_90.clicked.connect(self.new_cell)
-		self.pushButton_91.clicked.connect(self.update_cell)
+		self.pushButton_91.clicked.connect(self.update_cell1920)
+		self.pushButton_92.clicked.connect(self.update_cell21)
+
 
 
 
@@ -266,16 +276,16 @@ class Main(QtWidgets.QMainWindow,Ui_MainWindow):
 	   a = QtWidgets.QApplication.clipboard()
 	   a.setText(x)
 	def quyenloi(self):
-		x="AE ĐỌC THẬT KỸ:\
-		\nQuyền lợi THAM GIA DIỄN ĐÀN Giaimasohoc HOÀN TOÀN MIỄN PHÍ\
-		\n+ Được tham khảo số , cầu kèo ,phương pháp chơi của cao thủ TOP 1 miễn phí\
-		\n+ Sinh hoạt cùng cao thủ ở các câu lạc bộ XIÊN, 3 CÀNG, ĐỀ\
-		\n+ Được tham gia sinh hoạt cùng các thành viên và các cao thủ có kinh nghiệm SỐ trong nhóm\
-		\n+ Được tham gia dự thi CAO THỦ CHỐT SỐ hàng tháng và trở thành CAO THỦ trên diễn đàn\
-		\n+ Được tham gia diễn đàn trao đổi giao lưu với các CAO THỦ và CHỦ TỊCH CLB"
-		self.textEdit.setText(x)
+		x=["AE ĐỌC THẬT KỸ",
+		"Quyền lợi THAM GIA DIỄN ĐÀN Giaimasohoc HOÀN TOÀN MIỄN PHÍ",
+		"+ Được tham khảo số, cầu kèo, phương pháp chơi của cao thủ TOP 1 miễn phí",
+		"+ Sinh hoạt cùng cao thủ ở các câu lạc bộ XIÊN, 3 CÀNG, ĐỀ",
+		"+ Được tham gia sinh hoạt cùng các thành viên và các cao thủ có kinh nghiệm SỐ trong nhóm",
+		"+ Được tham gia dự thi CAO THỦ CHỐT SỐ hàng tháng và trở thành CAO THỦ trên diễn đàn",
+		"+ Được tham gia diễn đàn trao đổi giao lưu với các CAO THỦ và CHỦ TỊCH CLB"]
+		self.textEdit.setText('\n'.join(x))
 		a = QtWidgets.QApplication.clipboard()
-		a.setText(x)
+		a.setText('\n'.join(x))
 	def kulagi(self):
 		x="Tài khoản KUDV để A.e chơi ghi lô ghi đề, số má trên đấy\
 		\nTài khoản diễn đàn chỉ sử dụng để xem các cao thủ chốt số và hoạt động\
@@ -298,9 +308,9 @@ class Main(QtWidgets.QMainWindow,Ui_MainWindow):
 		a = QtWidgets.QApplication.clipboard()
 		a.setText(x)
 	def nhactk(self):
-		x="Để bảo mật TK ,Mật khẩu ko thay đổi được\
+		x="Để bảo mật TK, Mật khẩu ko thay đổi được\
 		\nTài khoản và Mật khẩu Admin chỉ cấp 1 lần\
-		\nAE CHÚ Ý ghi chép ra giấy cất đi ,lưu lại\
+		\nAE CHÚ Ý ghi chép ra giấy cất đi, lưu lại\
 		\nQUÊN hay MẤT sẽ KHÔNG được xem xét cấp lại nhé!"
 		self.textEdit.setText(x)
 		a = QtWidgets.QApplication.clipboard()
@@ -337,7 +347,7 @@ class Main(QtWidgets.QMainWindow,Ui_MainWindow):
 	def phongchat(self):
 		x="Trên diễn đàn GMSH có các phòng chát, nơi ae giao lưu, chơi cùng cao thủ\
 		\nĐấy chính là nhóm cho ae, ae lên đấy hoạt động.\
-		\nhúc ae rực rỡ!"        
+		\nChúc ae rực rỡ!"        
 		self.textEdit.setText(x)
 		a = QtWidgets.QApplication.clipboard()
 		a.setText(x)
@@ -791,7 +801,7 @@ class Main(QtWidgets.QMainWindow,Ui_MainWindow):
 		self.lineEdit_18.setText('')
 		self.lineEdit_19.setText('')
 		self.lineEdit_8.setText('')
-		username = self.lineEdit.text().upper()
+		username = self.lineEdit.text()
 		a = False
 		if username =='':
 			return 
@@ -847,10 +857,7 @@ class Main(QtWidgets.QMainWindow,Ui_MainWindow):
 				return        
 
 		if a == False:        
-			self.msgBox(
-				text='Không có nhé !',
-				title='Xin chia buồn'
-			)
+			self.label_25.setText('KHÔNG CÓ NHÉ')
 
 	def closeEvent(self, event):
 		msgBox = QtWidgets.QMessageBox()
@@ -909,7 +916,7 @@ class Threading(QtCore.QThread):
 					LIST_XUPHAT = return_value
 
 		self.msg.emit(r'Đã nạp xong 100% dữ liệu')
-
+		print(LIST_1920)
 
 if __name__ == '__main__':
 	app = QtWidgets.QApplication(sys.argv)
