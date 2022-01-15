@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "bot-skype-336317",
+  "private_key_id": "e0753184c3e63ec3da56986d74292015f7b87b6b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCcbxWrFB9//zPl\nc5cghhCBLzCQSzYd4u8Et7+ScxciF3X+1NJuASpFAXit++UkIzMttYPJiEEKAVbI\nML0Rr0WDj/rnp7p2EYkQkLM50B2RX16lr+HJYDszMozspL5XSTrIOYriXESXfoIt\nGmzuEbzDvaR+7d8n4Q0vHtziFX9nvrOYAYnKanV9rz9jdt4gsXQnPLjcJST7Vwza\nuQ3xXHPzZiCJWhY9a42gQGigKaSe+5HyrBnF0kbHvsN/WS0KRqJ8nXFXCMXZYZra\nSt2NUmlHR/4kX+8/atVrhFlp5eg06y2ytwbo5FPvsnPyxz8KiIIGMQWB4C4NNKXc\nUrsJh64RAgMBAAECggEACys6t7HafGXlB4g41W2A+uo6vEikat6XnGV+n+cH8ysL\n5Yd+JTS/1vivjDOAhROezTAJIl/QLfXRw34IV72E9+tVGYpOC609lSFRrIplfAo8\nPJXpx9oPK/z7Vw99mAeOUvqZxgbarlrN0kjRV2+Mg8iz2Iyk+sjMi01Xrawlgit8\nvL5JEDV1A1/dzljLZ0WxOLiRmBVGKh9R/H30WuPj0+kzozWW/rZCZcntrjVF0bRJ\n1AVG3ewIwFfCuiHRgJn+j0wHqwku/tPyVSGzGj+xavnlLiIVCZt1UZDoeHKlt/vZ\nMmERYSxBgR+Hp2kSHR84WV9IdfaNtEhUs63vsRjO6QKBgQDK2Agcni/ZnczJxYBI\nfRC1tscNo2N51rA+jiWl3CblZZkQttQxX7Nm8ptxksFeISHnUZMfnbdH5hDqZpE9\nE1z0ha1jxDNu7QeI9c6C9KjBj6n2gILMMCdxCYstGTGu5Xu1a9Y11KUxeoj60Kj5\nP/9ZRft7um3SUN5RXxVc0qtcGQKBgQDFbZlExNnqWKb4xnNk6JDDAy3LoTUKaF09\nqP4vAdW9LbvMPQ93r/JKD1/vXWXB1QiIGLX0zfsvccKUZ/PJq87wAWVzhGlTEMPm\nUxUbrLD6MRmNVPhB6cQQHpWQD7pnaS/fOw2OZMRfrdyAAnZiLPhY7Pug+g9+O7Bk\nZVnMJ4cguQKBgQC8AxsZs4G0mm/7wWVTSyDW3TCJMp18jALWKJk6r+EZlV8Xv+7U\nSNkXnd14msdCgUFUkCbnEh+Us+mP6jvKuYzaVKFPLMdjlK38Q6IDfdSBfLDT+2/A\n5Q1Z17e5uHV1n91XXjmxsYTgZKxcllVYmfoLfDNKDpXGcBBwqco6PEZ62QKBgQCi\nM0gP0rbCLPGJQ+m8RsHgJfVy7c/Y7CNmrDegwR4sXa2Dv8q8Z2Zk6DrGOnKGjBKF\nVd/v72bl9M2LBdipoKjUUCFchbXOk+COk0WtRfTkqIA4uE16QadeIvJ3uCRKH4ZA\nHZEmoq0feoTE+sDuKcojrReSir8906Y45XegHf2LqQKBgGVtaVRsW9bzmBUoV4CJ\nx3sv3Y5FJgpHg2hZb3k9Sw+YUlnTgbLKISB3MSuBxvhiBMZRpiuW3v7SR8FoQNKk\nvcu9B2zH4zaQiwzTIA9v+y1W3Jc9rmXRawOMXLDiORXL7+Hvr6kTKbTlu4VKPx/E\nyuVoCAroMy1IBlbwCf8oO7B5\n-----END PRIVATE KEY-----\n",
+  "client_email": "botskype@bot-skype-336317.iam.gserviceaccount.com",
+  "client_id": "107665982424386710933",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/botskype%40bot-skype-336317.iam.gserviceaccount.com"
+}
